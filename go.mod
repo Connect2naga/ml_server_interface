@@ -1,6 +1,6 @@
 module github.com/connect2naga/ml_server_interface
 
-go 1.18
+go 1.17
 
 require (
 	google.golang.org/grpc v1.47.0
