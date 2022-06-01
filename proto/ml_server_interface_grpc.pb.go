@@ -4,7 +4,7 @@
 // - protoc             v3.6.1
 // source: ml_server_interface.proto
 
-package experiment
+package ml_server_interface
 
 import (
 	context "context"
