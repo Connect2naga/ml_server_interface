@@ -1,6 +1,6 @@
 syntax = "proto3";
 package grpc_inter;
-option go_package = "github.com/connect2naga/proto/grpc_inter";
+option go_package = "github.com/connect2naga/grpc_inter/grpc_inter";
 
 message Limit {
   string min = 1;
