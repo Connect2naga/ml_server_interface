@@ -4,7 +4,7 @@
 // - protoc             v3.6.1
 // source: ml_server_interface.proto
 
-package grpc_inter
+package experiment
 
 import (
 	context "context"
@@ -36,7 +36,7 @@ func NewIterationHandlerClient(cc grpc.ClientConnInterface) IterationHandlerClie
 
 func (c *iterationHandlerClient) StartIterationExperiment(ctx context.Context, in *Experiment, opts ...grpc.CallOption) (*Null, error) {
 	out := new(Null)
-	err := c.cc.Invoke(ctx, "/grpc_inter.IterationHandler/StartIterationExperiment", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/experiment.IterationHandler/StartIterationExperiment", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -45,7 +45,7 @@ func (c *iterationHandlerClient) StartIterationExperiment(ctx context.Context, i
 
 func (c *iterationHandlerClient) StatusIterationExperiment(ctx context.Context, in *Experiment, opts ...grpc.CallOption) (*IterationResp, error) {
 	out := new(IterationResp)
-	err := c.cc.Invoke(ctx, "/grpc_inter.IterationHandler/StatusIterationExperiment", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/experiment.IterationHandler/StatusIterationExperiment", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -94,7 +94,7 @@ func _IterationHandler_StartIterationExperiment_Handler(srv interface{}, ctx con
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/grpc_inter.IterationHandler/StartIterationExperiment",
+		FullMethod: "/experiment.IterationHandler/StartIterationExperiment",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(IterationHandlerServer).StartIterationExperiment(ctx, req.(*Experiment))
@@ -112,7 +112,7 @@ func _IterationHandler_StatusIterationExperiment_Handler(srv interface{}, ctx co
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/grpc_inter.IterationHandler/StatusIterationExperiment",
+		FullMethod: "/experiment.IterationHandler/StatusIterationExperiment",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(IterationHandlerServer).StatusIterationExperiment(ctx, req.(*Experiment))
@@ -124,7 +124,7 @@ func _IterationHandler_StatusIterationExperiment_Handler(srv interface{}, ctx co
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var IterationHandler_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "grpc_inter.IterationHandler",
+	ServiceName: "experiment.IterationHandler",
 	HandlerType: (*IterationHandlerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -157,7 +157,7 @@ func NewAgentHandlerClient(cc grpc.ClientConnInterface) AgentHandlerClient {
 
 func (c *agentHandlerClient) RegisterAgent(ctx context.Context, in *ClientDetails, opts ...grpc.CallOption) (*ClientCredentials, error) {
 	out := new(ClientCredentials)
-	err := c.cc.Invoke(ctx, "/grpc_inter.AgentHandler/RegisterAgent", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/experiment.AgentHandler/RegisterAgent", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -202,7 +202,7 @@ func _AgentHandler_RegisterAgent_Handler(srv interface{}, ctx context.Context, d
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/grpc_inter.AgentHandler/RegisterAgent",
+		FullMethod: "/experiment.AgentHandler/RegisterAgent",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AgentHandlerServer).RegisterAgent(ctx, req.(*ClientDetails))
@@ -214,7 +214,7 @@ func _AgentHandler_RegisterAgent_Handler(srv interface{}, ctx context.Context, d
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var AgentHandler_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "grpc_inter.AgentHandler",
+	ServiceName: "experiment.AgentHandler",
 	HandlerType: (*AgentHandlerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -246,7 +246,7 @@ func NewExperimentHandlerClient(cc grpc.ClientConnInterface) ExperimentHandlerCl
 
 func (c *experimentHandlerClient) Setup(ctx context.Context, in *ExperimentSetupRequest, opts ...grpc.CallOption) (*ExperimentSetupResponse, error) {
 	out := new(ExperimentSetupResponse)
-	err := c.cc.Invoke(ctx, "/grpc_inter.ExperimentHandler/Setup", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/experiment.ExperimentHandler/Setup", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -255,7 +255,7 @@ func (c *experimentHandlerClient) Setup(ctx context.Context, in *ExperimentSetup
 
 func (c *experimentHandlerClient) StartExperiment(ctx context.Context, in *Experiment, opts ...grpc.CallOption) (*Null, error) {
 	out := new(Null)
-	err := c.cc.Invoke(ctx, "/grpc_inter.ExperimentHandler/StartExperiment", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/experiment.ExperimentHandler/StartExperiment", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -264,7 +264,7 @@ func (c *experimentHandlerClient) StartExperiment(ctx context.Context, in *Exper
 
 func (c *experimentHandlerClient) StatusExperiment(ctx context.Context, in *Experiment, opts ...grpc.CallOption) (*ExperimentSetupResponse, error) {
 	out := new(ExperimentSetupResponse)
-	err := c.cc.Invoke(ctx, "/grpc_inter.ExperimentHandler/StatusExperiment", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/experiment.ExperimentHandler/StatusExperiment", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -273,7 +273,7 @@ func (c *experimentHandlerClient) StatusExperiment(ctx context.Context, in *Expe
 
 func (c *experimentHandlerClient) StopExperiment(ctx context.Context, in *Experiment, opts ...grpc.CallOption) (*TerminationResp, error) {
 	out := new(TerminationResp)
-	err := c.cc.Invoke(ctx, "/grpc_inter.ExperimentHandler/StopExperiment", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/experiment.ExperimentHandler/StopExperiment", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -330,7 +330,7 @@ func _ExperimentHandler_Setup_Handler(srv interface{}, ctx context.Context, dec 
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/grpc_inter.ExperimentHandler/Setup",
+		FullMethod: "/experiment.ExperimentHandler/Setup",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ExperimentHandlerServer).Setup(ctx, req.(*ExperimentSetupRequest))
@@ -348,7 +348,7 @@ func _ExperimentHandler_StartExperiment_Handler(srv interface{}, ctx context.Con
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/grpc_inter.ExperimentHandler/StartExperiment",
+		FullMethod: "/experiment.ExperimentHandler/StartExperiment",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ExperimentHandlerServer).StartExperiment(ctx, req.(*Experiment))
@@ -366,7 +366,7 @@ func _ExperimentHandler_StatusExperiment_Handler(srv interface{}, ctx context.Co
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/grpc_inter.ExperimentHandler/StatusExperiment",
+		FullMethod: "/experiment.ExperimentHandler/StatusExperiment",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ExperimentHandlerServer).StatusExperiment(ctx, req.(*Experiment))
@@ -384,7 +384,7 @@ func _ExperimentHandler_StopExperiment_Handler(srv interface{}, ctx context.Cont
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/grpc_inter.ExperimentHandler/StopExperiment",
+		FullMethod: "/experiment.ExperimentHandler/StopExperiment",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ExperimentHandlerServer).StopExperiment(ctx, req.(*Experiment))
@@ -396,7 +396,7 @@ func _ExperimentHandler_StopExperiment_Handler(srv interface{}, ctx context.Cont
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var ExperimentHandler_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "grpc_inter.ExperimentHandler",
+	ServiceName: "experiment.ExperimentHandler",
 	HandlerType: (*ExperimentHandlerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -437,7 +437,7 @@ func NewIterationCallBacksHandlerClient(cc grpc.ClientConnInterface) IterationCa
 
 func (c *iterationCallBacksHandlerClient) IterationsResults(ctx context.Context, in *IterationResp, opts ...grpc.CallOption) (*Null, error) {
 	out := new(Null)
-	err := c.cc.Invoke(ctx, "/grpc_inter.IterationCallBacksHandler/IterationsResults", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/experiment.IterationCallBacksHandler/IterationsResults", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -483,7 +483,7 @@ func _IterationCallBacksHandler_IterationsResults_Handler(srv interface{}, ctx c
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/grpc_inter.IterationCallBacksHandler/IterationsResults",
+		FullMethod: "/experiment.IterationCallBacksHandler/IterationsResults",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(IterationCallBacksHandlerServer).IterationsResults(ctx, req.(*IterationResp))
@@ -495,7 +495,7 @@ func _IterationCallBacksHandler_IterationsResults_Handler(srv interface{}, ctx c
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var IterationCallBacksHandler_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "grpc_inter.IterationCallBacksHandler",
+	ServiceName: "experiment.IterationCallBacksHandler",
 	HandlerType: (*IterationCallBacksHandlerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

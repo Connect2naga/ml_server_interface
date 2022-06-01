@@ -1,6 +1,6 @@
 syntax = "proto3";
-package grpc_inter;
-option go_package = "github.com/connect2naga/grpc_inter/grpc_inter";
+package experiment;
+option go_package = "gitlab.com/tariandev_intelops/ml-server/experiment";
 
 message Limit {
   string min = 1;
@@ -44,9 +44,10 @@ message ClientDetails{
 }
 
 message ClientCredentials{
-  string clientID     = 1;
-  string clientSecret = 2;
-  string token        = 3;
+  string AgentID      = 1;
+  string clientID     = 2;
+  string clientSecret = 3;
+  string token        = 4;
 }
 
 message IterationResp{
