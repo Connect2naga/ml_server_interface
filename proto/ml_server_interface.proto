@@ -1,5 +1,5 @@
 syntax = "proto3";
-package experiment;
+package ml_server_interface;
 option go_package = "github.com/connect2naga/ml_server_interface";
 
 message Limit {
