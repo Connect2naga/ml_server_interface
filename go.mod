@@ -1,4 +1,4 @@
-module gitlab.com/tariandev_intelops/ml_server_interface
+module github.com/connect2naga/ml_server_interface
 
 go 1.18
 

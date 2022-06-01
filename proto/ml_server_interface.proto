@@ -1,6 +1,6 @@
 syntax = "proto3";
 package experiment;
-option go_package = "gitlab.com/tariandev_intelops/ml_server_interface";
+option go_package = "github.com/connect2naga/ml_server_interface";
 
 message Limit {
   string min = 1;
