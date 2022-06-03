@@ -424,8 +424,8 @@ var ExperimentHandler_ServiceDesc = grpc.ServiceDesc{
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ServerCallBacksHandlerClient interface {
-	IterationsResults(ctx context.Context, in *IterationResp, opts ...grpc.CallOption) (*Null, error)
-	DataCollectorCallback(ctx context.Context, in *DataCollectorNotification, opts ...grpc.CallOption) (*DataCollectorNotificationResponce, error)
+	MLAgentSetupCallback(ctx context.Context, in *AgentNotification, opts ...grpc.CallOption) (*Null, error)
+	DataCollectorSetupCallback(ctx context.Context, in *DataCollectorNotification, opts ...grpc.CallOption) (*DataCollectorNotificationResponce, error)
 }
 
 type serverCallBacksHandlerClient struct {
@@ -436,18 +436,18 @@ func NewServerCallBacksHandlerClient(cc grpc.ClientConnInterface) ServerCallBack
 	return &serverCallBacksHandlerClient{cc}
 }
 
-func (c *serverCallBacksHandlerClient) IterationsResults(ctx context.Context, in *IterationResp, opts ...grpc.CallOption) (*Null, error) {
+func (c *serverCallBacksHandlerClient) MLAgentSetupCallback(ctx context.Context, in *AgentNotification, opts ...grpc.CallOption) (*Null, error) {
 	out := new(Null)
-	err := c.cc.Invoke(ctx, "/experiment.ServerCallBacksHandler/IterationsResults", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/experiment.ServerCallBacksHandler/MLAgentSetupCallback", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *serverCallBacksHandlerClient) DataCollectorCallback(ctx context.Context, in *DataCollectorNotification, opts ...grpc.CallOption) (*DataCollectorNotificationResponce, error) {
+func (c *serverCallBacksHandlerClient) DataCollectorSetupCallback(ctx context.Context, in *DataCollectorNotification, opts ...grpc.CallOption) (*DataCollectorNotificationResponce, error) {
 	out := new(DataCollectorNotificationResponce)
-	err := c.cc.Invoke(ctx, "/experiment.ServerCallBacksHandler/DataCollectorCallback", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/experiment.ServerCallBacksHandler/DataCollectorSetupCallback", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -458,8 +458,8 @@ func (c *serverCallBacksHandlerClient) DataCollectorCallback(ctx context.Context
 // All implementations must embed UnimplementedServerCallBacksHandlerServer
 // for forward compatibility
 type ServerCallBacksHandlerServer interface {
-	IterationsResults(context.Context, *IterationResp) (*Null, error)
-	DataCollectorCallback(context.Context, *DataCollectorNotification) (*DataCollectorNotificationResponce, error)
+	MLAgentSetupCallback(context.Context, *AgentNotification) (*Null, error)
+	DataCollectorSetupCallback(context.Context, *DataCollectorNotification) (*DataCollectorNotificationResponce, error)
 	mustEmbedUnimplementedServerCallBacksHandlerServer()
 }
 
@@ -467,11 +467,11 @@ type ServerCallBacksHandlerServer interface {
 type UnimplementedServerCallBacksHandlerServer struct {
 }
 
-func (UnimplementedServerCallBacksHandlerServer) IterationsResults(context.Context, *IterationResp) (*Null, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method IterationsResults not implemented")
+func (UnimplementedServerCallBacksHandlerServer) MLAgentSetupCallback(context.Context, *AgentNotification) (*Null, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method MLAgentSetupCallback not implemented")
 }
-func (UnimplementedServerCallBacksHandlerServer) DataCollectorCallback(context.Context, *DataCollectorNotification) (*DataCollectorNotificationResponce, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DataCollectorCallback not implemented")
+func (UnimplementedServerCallBacksHandlerServer) DataCollectorSetupCallback(context.Context, *DataCollectorNotification) (*DataCollectorNotificationResponce, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DataCollectorSetupCallback not implemented")
 }
 func (UnimplementedServerCallBacksHandlerServer) mustEmbedUnimplementedServerCallBacksHandlerServer() {
 }
@@ -487,38 +487,38 @@ func RegisterServerCallBacksHandlerServer(s grpc.ServiceRegistrar, srv ServerCal
 	s.RegisterService(&ServerCallBacksHandler_ServiceDesc, srv)
 }
 
-func _ServerCallBacksHandler_IterationsResults_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(IterationResp)
+func _ServerCallBacksHandler_MLAgentSetupCallback_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AgentNotification)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ServerCallBacksHandlerServer).IterationsResults(ctx, in)
+		return srv.(ServerCallBacksHandlerServer).MLAgentSetupCallback(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/experiment.ServerCallBacksHandler/IterationsResults",
+		FullMethod: "/experiment.ServerCallBacksHandler/MLAgentSetupCallback",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServerCallBacksHandlerServer).IterationsResults(ctx, req.(*IterationResp))
+		return srv.(ServerCallBacksHandlerServer).MLAgentSetupCallback(ctx, req.(*AgentNotification))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ServerCallBacksHandler_DataCollectorCallback_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ServerCallBacksHandler_DataCollectorSetupCallback_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DataCollectorNotification)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ServerCallBacksHandlerServer).DataCollectorCallback(ctx, in)
+		return srv.(ServerCallBacksHandlerServer).DataCollectorSetupCallback(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/experiment.ServerCallBacksHandler/DataCollectorCallback",
+		FullMethod: "/experiment.ServerCallBacksHandler/DataCollectorSetupCallback",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServerCallBacksHandlerServer).DataCollectorCallback(ctx, req.(*DataCollectorNotification))
+		return srv.(ServerCallBacksHandlerServer).DataCollectorSetupCallback(ctx, req.(*DataCollectorNotification))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -531,12 +531,135 @@ var ServerCallBacksHandler_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*ServerCallBacksHandlerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
+			MethodName: "MLAgentSetupCallback",
+			Handler:    _ServerCallBacksHandler_MLAgentSetupCallback_Handler,
+		},
+		{
+			MethodName: "DataCollectorSetupCallback",
+			Handler:    _ServerCallBacksHandler_DataCollectorSetupCallback_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "ml_server_interface.proto",
+}
+
+// IterationCallBacksHandlerClient is the client API for IterationCallBacksHandler service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type IterationCallBacksHandlerClient interface {
+	IterationsResults(ctx context.Context, in *IterationResp, opts ...grpc.CallOption) (*Null, error)
+	DataCollectorCallback(ctx context.Context, in *DataCollectorNotification, opts ...grpc.CallOption) (*DataCollectorNotificationResponce, error)
+}
+
+type iterationCallBacksHandlerClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewIterationCallBacksHandlerClient(cc grpc.ClientConnInterface) IterationCallBacksHandlerClient {
+	return &iterationCallBacksHandlerClient{cc}
+}
+
+func (c *iterationCallBacksHandlerClient) IterationsResults(ctx context.Context, in *IterationResp, opts ...grpc.CallOption) (*Null, error) {
+	out := new(Null)
+	err := c.cc.Invoke(ctx, "/experiment.IterationCallBacksHandler/IterationsResults", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *iterationCallBacksHandlerClient) DataCollectorCallback(ctx context.Context, in *DataCollectorNotification, opts ...grpc.CallOption) (*DataCollectorNotificationResponce, error) {
+	out := new(DataCollectorNotificationResponce)
+	err := c.cc.Invoke(ctx, "/experiment.IterationCallBacksHandler/DataCollectorCallback", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// IterationCallBacksHandlerServer is the server API for IterationCallBacksHandler service.
+// All implementations must embed UnimplementedIterationCallBacksHandlerServer
+// for forward compatibility
+type IterationCallBacksHandlerServer interface {
+	IterationsResults(context.Context, *IterationResp) (*Null, error)
+	DataCollectorCallback(context.Context, *DataCollectorNotification) (*DataCollectorNotificationResponce, error)
+	mustEmbedUnimplementedIterationCallBacksHandlerServer()
+}
+
+// UnimplementedIterationCallBacksHandlerServer must be embedded to have forward compatible implementations.
+type UnimplementedIterationCallBacksHandlerServer struct {
+}
+
+func (UnimplementedIterationCallBacksHandlerServer) IterationsResults(context.Context, *IterationResp) (*Null, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method IterationsResults not implemented")
+}
+func (UnimplementedIterationCallBacksHandlerServer) DataCollectorCallback(context.Context, *DataCollectorNotification) (*DataCollectorNotificationResponce, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DataCollectorCallback not implemented")
+}
+func (UnimplementedIterationCallBacksHandlerServer) mustEmbedUnimplementedIterationCallBacksHandlerServer() {
+}
+
+// UnsafeIterationCallBacksHandlerServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to IterationCallBacksHandlerServer will
+// result in compilation errors.
+type UnsafeIterationCallBacksHandlerServer interface {
+	mustEmbedUnimplementedIterationCallBacksHandlerServer()
+}
+
+func RegisterIterationCallBacksHandlerServer(s grpc.ServiceRegistrar, srv IterationCallBacksHandlerServer) {
+	s.RegisterService(&IterationCallBacksHandler_ServiceDesc, srv)
+}
+
+func _IterationCallBacksHandler_IterationsResults_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IterationResp)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(IterationCallBacksHandlerServer).IterationsResults(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/experiment.IterationCallBacksHandler/IterationsResults",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(IterationCallBacksHandlerServer).IterationsResults(ctx, req.(*IterationResp))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _IterationCallBacksHandler_DataCollectorCallback_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DataCollectorNotification)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(IterationCallBacksHandlerServer).DataCollectorCallback(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/experiment.IterationCallBacksHandler/DataCollectorCallback",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(IterationCallBacksHandlerServer).DataCollectorCallback(ctx, req.(*DataCollectorNotification))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// IterationCallBacksHandler_ServiceDesc is the grpc.ServiceDesc for IterationCallBacksHandler service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var IterationCallBacksHandler_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "experiment.IterationCallBacksHandler",
+	HandlerType: (*IterationCallBacksHandlerServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
 			MethodName: "IterationsResults",
-			Handler:    _ServerCallBacksHandler_IterationsResults_Handler,
+			Handler:    _IterationCallBacksHandler_IterationsResults_Handler,
 		},
 		{
 			MethodName: "DataCollectorCallback",
-			Handler:    _ServerCallBacksHandler_DataCollectorCallback_Handler,
+			Handler:    _IterationCallBacksHandler_DataCollectorCallback_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

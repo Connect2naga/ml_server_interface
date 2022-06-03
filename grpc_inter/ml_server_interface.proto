@@ -62,6 +62,10 @@ message DataCollectorNotification{
   string                  status            = 1;
 }
 
+message AgentNotification{
+  string                  status            = 1;
+}
+
 message DataCollectorNotificationResponce{
   string                  status            = 1;
   ExperimentSetupRequest  setup             = 2;
@@ -86,8 +90,12 @@ service ExperimentHandler {
   rpc StopExperiment(Experiment) returns(TerminationResp){}
 }
 
-
 service ServerCallBacksHandler {
+  rpc MLAgentSetupCallback(AgentNotification) returns(Null){}
+  rpc DataCollectorSetupCallback(DataCollectorNotification) returns(DataCollectorNotificationResponce){}
+}
+
+service IterationCallBacksHandler {
   rpc IterationsResults(IterationResp) returns(Null){}
   rpc DataCollectorCallback(DataCollectorNotification) returns(DataCollectorNotificationResponce){}
 }
