@@ -64,9 +64,8 @@ message DataCollectorNotification{
 }
 
 message AgentNotification{
-  string                  AgentID           = 1;
-  string                  ClientID          = 2;
-  string                  status            = 3;
+  string                  experimentID      = 1;
+  string                  status            = 2;
 }
 
 message DataCollectorNotificationResponce{
