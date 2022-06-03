@@ -99,5 +99,4 @@ service ServerCallBacksHandler {
 
 service IterationCallBacksHandler {
   rpc IterationsResults(IterationResp) returns(Null){}
-  rpc DataCollectorCallback(DataCollectorNotification) returns(DataCollectorNotificationResponce){}
 }
