@@ -59,11 +59,14 @@ message IterationResp{
 }
 
 message DataCollectorNotification{
-  string                  status            = 1;
+  string                  experimentID      = 1;
+  string                  status            = 2;
 }
 
 message AgentNotification{
-  string                  status            = 1;
+  string                  AgentID           = 1;
+  string                  ClientID          = 2;
+  string                  status            = 3;
 }
 
 message DataCollectorNotificationResponce{
