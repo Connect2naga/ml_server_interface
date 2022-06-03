@@ -58,6 +58,16 @@ message IterationResp{
   repeated ResourceLimits resourceLimits  = 5;
 }
 
+message DataCollectorNotification{
+  string                  status            = 1;
+}
+
+message DataCollectorNotificationResponce{
+  string                  status            = 1;
+  ExperimentSetupRequest  setup             = 2;
+}
+
+
 
 service IterationHandler {
   rpc StartIterationExperiment(Experiment) returns(Null){}
@@ -76,6 +86,8 @@ service ExperimentHandler {
   rpc StopExperiment(Experiment) returns(TerminationResp){}
 }
 
-service IterationCallBacksHandler {
+
+service ServerCallBacksHandler {
   rpc IterationsResults(IterationResp) returns(Null){}
+  rpc DataCollectorCallback(DataCollectorNotification) returns(DataCollectorNotificationResponce){}
 }
