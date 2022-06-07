@@ -8,14 +8,16 @@ message Limit {
 }
 
 message ExperimentSetupRequest{
-  map<string, string> agentDetails        = 1;
-  map<string, string> applicationDetails  = 2;
-  int32 noOfIterations                    = 3;
-  int32 iterationDurations                = 4;
-  string durationUnit                     = 5;
-  Limit cpu                               = 8;
-  Limit memory                            = 9;
-  bool startExperimentOnSetupReady        = 10;
+  map<string, string> agentDetails                = 1;
+  map<string, string> applicationDetails          = 2;
+  int32               noOfIterations              = 3;
+  int32               iterationDurations          = 4;
+  string              durationUnit                = 5;
+  Limit               cpu                         = 8;
+  Limit               memory                      = 9;
+  bool                startExperimentOnSetupReady = 10;
+  ResourceLimits      initialLimits               = 11;
+  string              AgentAddress                = 12;
 }
 
 message ResourceLimits{
@@ -50,6 +52,13 @@ message ClientCredentials{
   string token        = 4;
 }
 
+message IterationReq{
+  string                iterationID       = 1;
+  string                experimentID      = 2;
+  ResourceLimits        initialLimits     = 3;
+  ExperimentSetupRequest setupReq         = 4;
+}
+
 message IterationResp{
   string                status            = 1;
   string                iterationID       = 2;
@@ -76,7 +85,7 @@ message DataCollectorNotificationResponce{
 
 
 service IterationHandler {
-  rpc StartIterationExperiment(Experiment) returns(Null){}
+  rpc StartIterationExperiment(IterationReq) returns(Null){}
   rpc StatusIterationExperiment(Experiment) returns(IterationResp){}
 }
 
@@ -95,6 +104,7 @@ service ExperimentHandler {
 service ServerCallBacksHandler {
   rpc MLAgentSetupCallback(AgentNotification) returns(Null){}
   rpc DataCollectorSetupCallback(DataCollectorNotification) returns(DataCollectorNotificationResponce){}
+  rpc DataCollectorIterationStatusCallback(IterationResp) returns(Null){}
 }
 
 service IterationCallBacksHandler {
