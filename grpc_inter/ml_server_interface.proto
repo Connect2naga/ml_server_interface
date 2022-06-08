@@ -2,6 +2,21 @@ syntax = "proto3";
 package experiment;
 option go_package = "gitlab.com/tariandev_intelops/ml-server/experiment";
 
+message ResourceUsage {
+  string cpu      =  1;
+  string memory   =  2;
+}
+
+message Cpu {
+  string limit    = 1;
+  string required = 2;
+}
+
+message Memory {
+  string limit    = 1;
+  string required = 2;
+}
+
 message Limit {
   string min = 1;
   string max = 2;
@@ -21,14 +36,14 @@ message ExperimentSetupRequest{
 }
 
 message ResourceLimits{
-  string cpu    = 1;
-  string memory = 2;
+  Cpu cpu    = 1;
+  Memory memory = 2;
 }
 
 message ExperimentSetupResponse{
   string exp_id                           = 1;
   string status                           = 2;
-  repeated ResourceLimits resourceLimits  = 3;
+  repeated ResourceUsage resourceLimits   = 3;
 }
 
 message Experiment{
@@ -63,8 +78,8 @@ message IterationResp{
   string                status            = 1;
   string                iterationID       = 2;
   string                experimentID      = 3;
-  ResourceLimits        maxLimit          = 4;
-  repeated ResourceLimits resourceLimits  = 5;
+  ResourceUsage         maxLimit          = 4;
+  repeated ResourceUsage resourceLimits   = 5;
 }
 
 message DataCollectorNotification{
