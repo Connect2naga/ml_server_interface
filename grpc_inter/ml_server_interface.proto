@@ -70,6 +70,7 @@ message ClientCredentials{
 message IterationsDetails {
     IterationReq request    =1;
     IterationResp response  =2;
+    int32 IterationNumber   =3;
 }
 
 message IterationReq{
