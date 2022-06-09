@@ -426,7 +426,7 @@ var ExperimentHandler_ServiceDesc = grpc.ServiceDesc{
 type ServerCallBacksHandlerClient interface {
 	MLAgentSetupCallback(ctx context.Context, in *AgentNotification, opts ...grpc.CallOption) (*Null, error)
 	DataCollectorSetupCallback(ctx context.Context, in *DataCollectorNotification, opts ...grpc.CallOption) (*DataCollectorNotificationResponce, error)
-	DataCollectorIterationStatusCallback(ctx context.Context, in *IterationResp, opts ...grpc.CallOption) (*Null, error)
+	DataCollectorIterationStatusCallback(ctx context.Context, in *IterationsDetails, opts ...grpc.CallOption) (*Null, error)
 }
 
 type serverCallBacksHandlerClient struct {
@@ -455,7 +455,7 @@ func (c *serverCallBacksHandlerClient) DataCollectorSetupCallback(ctx context.Co
 	return out, nil
 }
 
-func (c *serverCallBacksHandlerClient) DataCollectorIterationStatusCallback(ctx context.Context, in *IterationResp, opts ...grpc.CallOption) (*Null, error) {
+func (c *serverCallBacksHandlerClient) DataCollectorIterationStatusCallback(ctx context.Context, in *IterationsDetails, opts ...grpc.CallOption) (*Null, error) {
 	out := new(Null)
 	err := c.cc.Invoke(ctx, "/experiment.ServerCallBacksHandler/DataCollectorIterationStatusCallback", in, out, opts...)
 	if err != nil {
@@ -470,7 +470,7 @@ func (c *serverCallBacksHandlerClient) DataCollectorIterationStatusCallback(ctx 
 type ServerCallBacksHandlerServer interface {
 	MLAgentSetupCallback(context.Context, *AgentNotification) (*Null, error)
 	DataCollectorSetupCallback(context.Context, *DataCollectorNotification) (*DataCollectorNotificationResponce, error)
-	DataCollectorIterationStatusCallback(context.Context, *IterationResp) (*Null, error)
+	DataCollectorIterationStatusCallback(context.Context, *IterationsDetails) (*Null, error)
 	mustEmbedUnimplementedServerCallBacksHandlerServer()
 }
 
@@ -484,7 +484,7 @@ func (UnimplementedServerCallBacksHandlerServer) MLAgentSetupCallback(context.Co
 func (UnimplementedServerCallBacksHandlerServer) DataCollectorSetupCallback(context.Context, *DataCollectorNotification) (*DataCollectorNotificationResponce, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DataCollectorSetupCallback not implemented")
 }
-func (UnimplementedServerCallBacksHandlerServer) DataCollectorIterationStatusCallback(context.Context, *IterationResp) (*Null, error) {
+func (UnimplementedServerCallBacksHandlerServer) DataCollectorIterationStatusCallback(context.Context, *IterationsDetails) (*Null, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DataCollectorIterationStatusCallback not implemented")
 }
 func (UnimplementedServerCallBacksHandlerServer) mustEmbedUnimplementedServerCallBacksHandlerServer() {
@@ -538,7 +538,7 @@ func _ServerCallBacksHandler_DataCollectorSetupCallback_Handler(srv interface{},
 }
 
 func _ServerCallBacksHandler_DataCollectorIterationStatusCallback_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(IterationResp)
+	in := new(IterationsDetails)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -550,7 +550,7 @@ func _ServerCallBacksHandler_DataCollectorIterationStatusCallback_Handler(srv in
 		FullMethod: "/experiment.ServerCallBacksHandler/DataCollectorIterationStatusCallback",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServerCallBacksHandlerServer).DataCollectorIterationStatusCallback(ctx, req.(*IterationResp))
+		return srv.(ServerCallBacksHandlerServer).DataCollectorIterationStatusCallback(ctx, req.(*IterationsDetails))
 	}
 	return interceptor(ctx, in, info, handler)
 }

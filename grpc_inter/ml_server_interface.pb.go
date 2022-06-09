@@ -727,6 +727,61 @@ func (x *ClientCredentials) GetToken() string {
 	return ""
 }
 
+type IterationsDetails struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Request  *IterationReq  `protobuf:"bytes,1,opt,name=request,proto3" json:"request,omitempty"`
+	Response *IterationResp `protobuf:"bytes,2,opt,name=response,proto3" json:"response,omitempty"`
+}
+
+func (x *IterationsDetails) Reset() {
+	*x = IterationsDetails{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_ml_server_interface_proto_msgTypes[12]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *IterationsDetails) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*IterationsDetails) ProtoMessage() {}
+
+func (x *IterationsDetails) ProtoReflect() protoreflect.Message {
+	mi := &file_ml_server_interface_proto_msgTypes[12]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use IterationsDetails.ProtoReflect.Descriptor instead.
+func (*IterationsDetails) Descriptor() ([]byte, []int) {
+	return file_ml_server_interface_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *IterationsDetails) GetRequest() *IterationReq {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
+func (x *IterationsDetails) GetResponse() *IterationResp {
+	if x != nil {
+		return x.Response
+	}
+	return nil
+}
+
 type IterationReq struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -741,7 +796,7 @@ type IterationReq struct {
 func (x *IterationReq) Reset() {
 	*x = IterationReq{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_ml_server_interface_proto_msgTypes[12]
+		mi := &file_ml_server_interface_proto_msgTypes[13]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -754,7 +809,7 @@ func (x *IterationReq) String() string {
 func (*IterationReq) ProtoMessage() {}
 
 func (x *IterationReq) ProtoReflect() protoreflect.Message {
-	mi := &file_ml_server_interface_proto_msgTypes[12]
+	mi := &file_ml_server_interface_proto_msgTypes[13]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -767,7 +822,7 @@ func (x *IterationReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IterationReq.ProtoReflect.Descriptor instead.
 func (*IterationReq) Descriptor() ([]byte, []int) {
-	return file_ml_server_interface_proto_rawDescGZIP(), []int{12}
+	return file_ml_server_interface_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *IterationReq) GetIterationID() string {
@@ -813,7 +868,7 @@ type IterationResp struct {
 func (x *IterationResp) Reset() {
 	*x = IterationResp{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_ml_server_interface_proto_msgTypes[13]
+		mi := &file_ml_server_interface_proto_msgTypes[14]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -826,7 +881,7 @@ func (x *IterationResp) String() string {
 func (*IterationResp) ProtoMessage() {}
 
 func (x *IterationResp) ProtoReflect() protoreflect.Message {
-	mi := &file_ml_server_interface_proto_msgTypes[13]
+	mi := &file_ml_server_interface_proto_msgTypes[14]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -839,7 +894,7 @@ func (x *IterationResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IterationResp.ProtoReflect.Descriptor instead.
 func (*IterationResp) Descriptor() ([]byte, []int) {
-	return file_ml_server_interface_proto_rawDescGZIP(), []int{13}
+	return file_ml_server_interface_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *IterationResp) GetStatus() string {
@@ -889,7 +944,7 @@ type DataCollectorNotification struct {
 func (x *DataCollectorNotification) Reset() {
 	*x = DataCollectorNotification{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_ml_server_interface_proto_msgTypes[14]
+		mi := &file_ml_server_interface_proto_msgTypes[15]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -902,7 +957,7 @@ func (x *DataCollectorNotification) String() string {
 func (*DataCollectorNotification) ProtoMessage() {}
 
 func (x *DataCollectorNotification) ProtoReflect() protoreflect.Message {
-	mi := &file_ml_server_interface_proto_msgTypes[14]
+	mi := &file_ml_server_interface_proto_msgTypes[15]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -915,7 +970,7 @@ func (x *DataCollectorNotification) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DataCollectorNotification.ProtoReflect.Descriptor instead.
 func (*DataCollectorNotification) Descriptor() ([]byte, []int) {
-	return file_ml_server_interface_proto_rawDescGZIP(), []int{14}
+	return file_ml_server_interface_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *DataCollectorNotification) GetExperimentID() string {
@@ -944,7 +999,7 @@ type AgentNotification struct {
 func (x *AgentNotification) Reset() {
 	*x = AgentNotification{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_ml_server_interface_proto_msgTypes[15]
+		mi := &file_ml_server_interface_proto_msgTypes[16]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -957,7 +1012,7 @@ func (x *AgentNotification) String() string {
 func (*AgentNotification) ProtoMessage() {}
 
 func (x *AgentNotification) ProtoReflect() protoreflect.Message {
-	mi := &file_ml_server_interface_proto_msgTypes[15]
+	mi := &file_ml_server_interface_proto_msgTypes[16]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -970,7 +1025,7 @@ func (x *AgentNotification) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AgentNotification.ProtoReflect.Descriptor instead.
 func (*AgentNotification) Descriptor() ([]byte, []int) {
-	return file_ml_server_interface_proto_rawDescGZIP(), []int{15}
+	return file_ml_server_interface_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *AgentNotification) GetExperimentID() string {
@@ -999,7 +1054,7 @@ type DataCollectorNotificationResponce struct {
 func (x *DataCollectorNotificationResponce) Reset() {
 	*x = DataCollectorNotificationResponce{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_ml_server_interface_proto_msgTypes[16]
+		mi := &file_ml_server_interface_proto_msgTypes[17]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1012,7 +1067,7 @@ func (x *DataCollectorNotificationResponce) String() string {
 func (*DataCollectorNotificationResponce) ProtoMessage() {}
 
 func (x *DataCollectorNotificationResponce) ProtoReflect() protoreflect.Message {
-	mi := &file_ml_server_interface_proto_msgTypes[16]
+	mi := &file_ml_server_interface_proto_msgTypes[17]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1025,7 +1080,7 @@ func (x *DataCollectorNotificationResponce) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use DataCollectorNotificationResponce.ProtoReflect.Descriptor instead.
 func (*DataCollectorNotificationResponce) Descriptor() ([]byte, []int) {
-	return file_ml_server_interface_proto_rawDescGZIP(), []int{16}
+	return file_ml_server_interface_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *DataCollectorNotificationResponce) GetStatus() string {
@@ -1138,7 +1193,15 @@ var file_ml_server_interface_proto_rawDesc = []byte{
 	0x6c, 0x69, 0x65, 0x6e, 0x74, 0x53, 0x65, 0x63, 0x72, 0x65, 0x74, 0x18, 0x03, 0x20, 0x01, 0x28,
 	0x09, 0x52, 0x0c, 0x63, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x53, 0x65, 0x63, 0x72, 0x65, 0x74, 0x12,
 	0x14, 0x0a, 0x05, 0x74, 0x6f, 0x6b, 0x65, 0x6e, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05,
-	0x74, 0x6f, 0x6b, 0x65, 0x6e, 0x22, 0xd6, 0x01, 0x0a, 0x0c, 0x49, 0x74, 0x65, 0x72, 0x61, 0x74,
+	0x74, 0x6f, 0x6b, 0x65, 0x6e, 0x22, 0x7e, 0x0a, 0x11, 0x49, 0x74, 0x65, 0x72, 0x61, 0x74, 0x69,
+	0x6f, 0x6e, 0x73, 0x44, 0x65, 0x74, 0x61, 0x69, 0x6c, 0x73, 0x12, 0x32, 0x0a, 0x07, 0x72, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x18, 0x2e, 0x65, 0x78,
+	0x70, 0x65, 0x72, 0x69, 0x6d, 0x65, 0x6e, 0x74, 0x2e, 0x49, 0x74, 0x65, 0x72, 0x61, 0x74, 0x69,
+	0x6f, 0x6e, 0x52, 0x65, 0x71, 0x52, 0x07, 0x72, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x35,
+	0x0a, 0x08, 0x72, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b,
+	0x32, 0x19, 0x2e, 0x65, 0x78, 0x70, 0x65, 0x72, 0x69, 0x6d, 0x65, 0x6e, 0x74, 0x2e, 0x49, 0x74,
+	0x65, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x52, 0x08, 0x72, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0xd6, 0x01, 0x0a, 0x0c, 0x49, 0x74, 0x65, 0x72, 0x61, 0x74,
 	0x69, 0x6f, 0x6e, 0x52, 0x65, 0x71, 0x12, 0x20, 0x0a, 0x0b, 0x69, 0x74, 0x65, 0x72, 0x61, 0x74,
 	0x69, 0x6f, 0x6e, 0x49, 0x44, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x69, 0x74, 0x65,
 	0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x49, 0x44, 0x12, 0x22, 0x0a, 0x0c, 0x65, 0x78, 0x70, 0x65,
@@ -1221,7 +1284,7 @@ var file_ml_server_interface_proto_rawDesc = []byte{
 	0x69, 0x6d, 0x65, 0x6e, 0x74, 0x12, 0x16, 0x2e, 0x65, 0x78, 0x70, 0x65, 0x72, 0x69, 0x6d, 0x65,
 	0x6e, 0x74, 0x2e, 0x45, 0x78, 0x70, 0x65, 0x72, 0x69, 0x6d, 0x65, 0x6e, 0x74, 0x1a, 0x1b, 0x2e,
 	0x65, 0x78, 0x70, 0x65, 0x72, 0x69, 0x6d, 0x65, 0x6e, 0x74, 0x2e, 0x54, 0x65, 0x72, 0x6d, 0x69,
-	0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x22, 0x00, 0x32, 0xb0, 0x02, 0x0a,
+	0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x22, 0x00, 0x32, 0xb4, 0x02, 0x0a,
 	0x16, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x43, 0x61, 0x6c, 0x6c, 0x42, 0x61, 0x63, 0x6b, 0x73,
 	0x48, 0x61, 0x6e, 0x64, 0x6c, 0x65, 0x72, 0x12, 0x49, 0x0a, 0x14, 0x4d, 0x4c, 0x41, 0x67, 0x65,
 	0x6e, 0x74, 0x53, 0x65, 0x74, 0x75, 0x70, 0x43, 0x61, 0x6c, 0x6c, 0x62, 0x61, 0x63, 0x6b, 0x12,
@@ -1235,22 +1298,23 @@ var file_ml_server_interface_proto_rawDesc = []byte{
 	0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x1a, 0x2d, 0x2e, 0x65, 0x78, 0x70, 0x65, 0x72, 0x69,
 	0x6d, 0x65, 0x6e, 0x74, 0x2e, 0x44, 0x61, 0x74, 0x61, 0x43, 0x6f, 0x6c, 0x6c, 0x65, 0x63, 0x74,
 	0x6f, 0x72, 0x4e, 0x6f, 0x74, 0x69, 0x66, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65,
-	0x73, 0x70, 0x6f, 0x6e, 0x63, 0x65, 0x22, 0x00, 0x12, 0x55, 0x0a, 0x24, 0x44, 0x61, 0x74, 0x61,
+	0x73, 0x70, 0x6f, 0x6e, 0x63, 0x65, 0x22, 0x00, 0x12, 0x59, 0x0a, 0x24, 0x44, 0x61, 0x74, 0x61,
 	0x43, 0x6f, 0x6c, 0x6c, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x49, 0x74, 0x65, 0x72, 0x61, 0x74, 0x69,
 	0x6f, 0x6e, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x43, 0x61, 0x6c, 0x6c, 0x62, 0x61, 0x63, 0x6b,
-	0x12, 0x19, 0x2e, 0x65, 0x78, 0x70, 0x65, 0x72, 0x69, 0x6d, 0x65, 0x6e, 0x74, 0x2e, 0x49, 0x74,
-	0x65, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x1a, 0x10, 0x2e, 0x65, 0x78,
-	0x70, 0x65, 0x72, 0x69, 0x6d, 0x65, 0x6e, 0x74, 0x2e, 0x4e, 0x75, 0x6c, 0x6c, 0x22, 0x00, 0x32,
-	0x5f, 0x0a, 0x19, 0x49, 0x74, 0x65, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x61, 0x6c, 0x6c,
-	0x42, 0x61, 0x63, 0x6b, 0x73, 0x48, 0x61, 0x6e, 0x64, 0x6c, 0x65, 0x72, 0x12, 0x42, 0x0a, 0x11,
-	0x49, 0x74, 0x65, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x52, 0x65, 0x73, 0x75, 0x6c, 0x74,
-	0x73, 0x12, 0x19, 0x2e, 0x65, 0x78, 0x70, 0x65, 0x72, 0x69, 0x6d, 0x65, 0x6e, 0x74, 0x2e, 0x49,
-	0x74, 0x65, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x1a, 0x10, 0x2e, 0x65,
-	0x78, 0x70, 0x65, 0x72, 0x69, 0x6d, 0x65, 0x6e, 0x74, 0x2e, 0x4e, 0x75, 0x6c, 0x6c, 0x22, 0x00,
-	0x42, 0x34, 0x5a, 0x32, 0x67, 0x69, 0x74, 0x6c, 0x61, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x74,
-	0x61, 0x72, 0x69, 0x61, 0x6e, 0x64, 0x65, 0x76, 0x5f, 0x69, 0x6e, 0x74, 0x65, 0x6c, 0x6f, 0x70,
-	0x73, 0x2f, 0x6d, 0x6c, 0x2d, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2f, 0x65, 0x78, 0x70, 0x65,
-	0x72, 0x69, 0x6d, 0x65, 0x6e, 0x74, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x12, 0x1d, 0x2e, 0x65, 0x78, 0x70, 0x65, 0x72, 0x69, 0x6d, 0x65, 0x6e, 0x74, 0x2e, 0x49, 0x74,
+	0x65, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x44, 0x65, 0x74, 0x61, 0x69, 0x6c, 0x73, 0x1a,
+	0x10, 0x2e, 0x65, 0x78, 0x70, 0x65, 0x72, 0x69, 0x6d, 0x65, 0x6e, 0x74, 0x2e, 0x4e, 0x75, 0x6c,
+	0x6c, 0x22, 0x00, 0x32, 0x5f, 0x0a, 0x19, 0x49, 0x74, 0x65, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e,
+	0x43, 0x61, 0x6c, 0x6c, 0x42, 0x61, 0x63, 0x6b, 0x73, 0x48, 0x61, 0x6e, 0x64, 0x6c, 0x65, 0x72,
+	0x12, 0x42, 0x0a, 0x11, 0x49, 0x74, 0x65, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x52, 0x65,
+	0x73, 0x75, 0x6c, 0x74, 0x73, 0x12, 0x19, 0x2e, 0x65, 0x78, 0x70, 0x65, 0x72, 0x69, 0x6d, 0x65,
+	0x6e, 0x74, 0x2e, 0x49, 0x74, 0x65, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70,
+	0x1a, 0x10, 0x2e, 0x65, 0x78, 0x70, 0x65, 0x72, 0x69, 0x6d, 0x65, 0x6e, 0x74, 0x2e, 0x4e, 0x75,
+	0x6c, 0x6c, 0x22, 0x00, 0x42, 0x34, 0x5a, 0x32, 0x67, 0x69, 0x74, 0x6c, 0x61, 0x62, 0x2e, 0x63,
+	0x6f, 0x6d, 0x2f, 0x74, 0x61, 0x72, 0x69, 0x61, 0x6e, 0x64, 0x65, 0x76, 0x5f, 0x69, 0x6e, 0x74,
+	0x65, 0x6c, 0x6f, 0x70, 0x73, 0x2f, 0x6d, 0x6c, 0x2d, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2f,
+	0x65, 0x78, 0x70, 0x65, 0x72, 0x69, 0x6d, 0x65, 0x6e, 0x74, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x33,
 }
 
 var (
@@ -1265,7 +1329,7 @@ func file_ml_server_interface_proto_rawDescGZIP() []byte {
 	return file_ml_server_interface_proto_rawDescData
 }
 
-var file_ml_server_interface_proto_msgTypes = make([]protoimpl.MessageInfo, 19)
+var file_ml_server_interface_proto_msgTypes = make([]protoimpl.MessageInfo, 20)
 var file_ml_server_interface_proto_goTypes = []interface{}{
 	(*ResourceUsage)(nil),                     // 0: experiment.ResourceUsage
 	(*Cpu)(nil),                               // 1: experiment.Cpu
@@ -1279,55 +1343,58 @@ var file_ml_server_interface_proto_goTypes = []interface{}{
 	(*Null)(nil),                              // 9: experiment.Null
 	(*ClientDetails)(nil),                     // 10: experiment.ClientDetails
 	(*ClientCredentials)(nil),                 // 11: experiment.ClientCredentials
-	(*IterationReq)(nil),                      // 12: experiment.IterationReq
-	(*IterationResp)(nil),                     // 13: experiment.IterationResp
-	(*DataCollectorNotification)(nil),         // 14: experiment.DataCollectorNotification
-	(*AgentNotification)(nil),                 // 15: experiment.AgentNotification
-	(*DataCollectorNotificationResponce)(nil), // 16: experiment.DataCollectorNotificationResponce
-	nil, // 17: experiment.ExperimentSetupRequest.AgentDetailsEntry
-	nil, // 18: experiment.ExperimentSetupRequest.ApplicationDetailsEntry
+	(*IterationsDetails)(nil),                 // 12: experiment.IterationsDetails
+	(*IterationReq)(nil),                      // 13: experiment.IterationReq
+	(*IterationResp)(nil),                     // 14: experiment.IterationResp
+	(*DataCollectorNotification)(nil),         // 15: experiment.DataCollectorNotification
+	(*AgentNotification)(nil),                 // 16: experiment.AgentNotification
+	(*DataCollectorNotificationResponce)(nil), // 17: experiment.DataCollectorNotificationResponce
+	nil, // 18: experiment.ExperimentSetupRequest.AgentDetailsEntry
+	nil, // 19: experiment.ExperimentSetupRequest.ApplicationDetailsEntry
 }
 var file_ml_server_interface_proto_depIdxs = []int32{
-	17, // 0: experiment.ExperimentSetupRequest.agentDetails:type_name -> experiment.ExperimentSetupRequest.AgentDetailsEntry
-	18, // 1: experiment.ExperimentSetupRequest.applicationDetails:type_name -> experiment.ExperimentSetupRequest.ApplicationDetailsEntry
+	18, // 0: experiment.ExperimentSetupRequest.agentDetails:type_name -> experiment.ExperimentSetupRequest.AgentDetailsEntry
+	19, // 1: experiment.ExperimentSetupRequest.applicationDetails:type_name -> experiment.ExperimentSetupRequest.ApplicationDetailsEntry
 	3,  // 2: experiment.ExperimentSetupRequest.cpu:type_name -> experiment.Limit
 	3,  // 3: experiment.ExperimentSetupRequest.memory:type_name -> experiment.Limit
 	5,  // 4: experiment.ExperimentSetupRequest.initialLimits:type_name -> experiment.ResourceLimits
 	1,  // 5: experiment.ResourceLimits.cpu:type_name -> experiment.Cpu
 	2,  // 6: experiment.ResourceLimits.memory:type_name -> experiment.Memory
 	0,  // 7: experiment.ExperimentSetupResponse.resourceLimits:type_name -> experiment.ResourceUsage
-	5,  // 8: experiment.IterationReq.initialLimits:type_name -> experiment.ResourceLimits
-	4,  // 9: experiment.IterationReq.setupReq:type_name -> experiment.ExperimentSetupRequest
-	0,  // 10: experiment.IterationResp.maxLimit:type_name -> experiment.ResourceUsage
-	0,  // 11: experiment.IterationResp.resourceLimits:type_name -> experiment.ResourceUsage
-	4,  // 12: experiment.DataCollectorNotificationResponce.setup:type_name -> experiment.ExperimentSetupRequest
-	12, // 13: experiment.IterationHandler.StartIterationExperiment:input_type -> experiment.IterationReq
-	7,  // 14: experiment.IterationHandler.StatusIterationExperiment:input_type -> experiment.Experiment
-	10, // 15: experiment.AgentHandler.RegisterAgent:input_type -> experiment.ClientDetails
-	4,  // 16: experiment.ExperimentHandler.Setup:input_type -> experiment.ExperimentSetupRequest
-	7,  // 17: experiment.ExperimentHandler.StartExperiment:input_type -> experiment.Experiment
-	7,  // 18: experiment.ExperimentHandler.StatusExperiment:input_type -> experiment.Experiment
-	7,  // 19: experiment.ExperimentHandler.StopExperiment:input_type -> experiment.Experiment
-	15, // 20: experiment.ServerCallBacksHandler.MLAgentSetupCallback:input_type -> experiment.AgentNotification
-	14, // 21: experiment.ServerCallBacksHandler.DataCollectorSetupCallback:input_type -> experiment.DataCollectorNotification
-	13, // 22: experiment.ServerCallBacksHandler.DataCollectorIterationStatusCallback:input_type -> experiment.IterationResp
-	13, // 23: experiment.IterationCallBacksHandler.IterationsResults:input_type -> experiment.IterationResp
-	9,  // 24: experiment.IterationHandler.StartIterationExperiment:output_type -> experiment.Null
-	13, // 25: experiment.IterationHandler.StatusIterationExperiment:output_type -> experiment.IterationResp
-	11, // 26: experiment.AgentHandler.RegisterAgent:output_type -> experiment.ClientCredentials
-	6,  // 27: experiment.ExperimentHandler.Setup:output_type -> experiment.ExperimentSetupResponse
-	9,  // 28: experiment.ExperimentHandler.StartExperiment:output_type -> experiment.Null
-	6,  // 29: experiment.ExperimentHandler.StatusExperiment:output_type -> experiment.ExperimentSetupResponse
-	8,  // 30: experiment.ExperimentHandler.StopExperiment:output_type -> experiment.TerminationResp
-	9,  // 31: experiment.ServerCallBacksHandler.MLAgentSetupCallback:output_type -> experiment.Null
-	16, // 32: experiment.ServerCallBacksHandler.DataCollectorSetupCallback:output_type -> experiment.DataCollectorNotificationResponce
-	9,  // 33: experiment.ServerCallBacksHandler.DataCollectorIterationStatusCallback:output_type -> experiment.Null
-	9,  // 34: experiment.IterationCallBacksHandler.IterationsResults:output_type -> experiment.Null
-	24, // [24:35] is the sub-list for method output_type
-	13, // [13:24] is the sub-list for method input_type
-	13, // [13:13] is the sub-list for extension type_name
-	13, // [13:13] is the sub-list for extension extendee
-	0,  // [0:13] is the sub-list for field type_name
+	13, // 8: experiment.IterationsDetails.request:type_name -> experiment.IterationReq
+	14, // 9: experiment.IterationsDetails.response:type_name -> experiment.IterationResp
+	5,  // 10: experiment.IterationReq.initialLimits:type_name -> experiment.ResourceLimits
+	4,  // 11: experiment.IterationReq.setupReq:type_name -> experiment.ExperimentSetupRequest
+	0,  // 12: experiment.IterationResp.maxLimit:type_name -> experiment.ResourceUsage
+	0,  // 13: experiment.IterationResp.resourceLimits:type_name -> experiment.ResourceUsage
+	4,  // 14: experiment.DataCollectorNotificationResponce.setup:type_name -> experiment.ExperimentSetupRequest
+	13, // 15: experiment.IterationHandler.StartIterationExperiment:input_type -> experiment.IterationReq
+	7,  // 16: experiment.IterationHandler.StatusIterationExperiment:input_type -> experiment.Experiment
+	10, // 17: experiment.AgentHandler.RegisterAgent:input_type -> experiment.ClientDetails
+	4,  // 18: experiment.ExperimentHandler.Setup:input_type -> experiment.ExperimentSetupRequest
+	7,  // 19: experiment.ExperimentHandler.StartExperiment:input_type -> experiment.Experiment
+	7,  // 20: experiment.ExperimentHandler.StatusExperiment:input_type -> experiment.Experiment
+	7,  // 21: experiment.ExperimentHandler.StopExperiment:input_type -> experiment.Experiment
+	16, // 22: experiment.ServerCallBacksHandler.MLAgentSetupCallback:input_type -> experiment.AgentNotification
+	15, // 23: experiment.ServerCallBacksHandler.DataCollectorSetupCallback:input_type -> experiment.DataCollectorNotification
+	12, // 24: experiment.ServerCallBacksHandler.DataCollectorIterationStatusCallback:input_type -> experiment.IterationsDetails
+	14, // 25: experiment.IterationCallBacksHandler.IterationsResults:input_type -> experiment.IterationResp
+	9,  // 26: experiment.IterationHandler.StartIterationExperiment:output_type -> experiment.Null
+	14, // 27: experiment.IterationHandler.StatusIterationExperiment:output_type -> experiment.IterationResp
+	11, // 28: experiment.AgentHandler.RegisterAgent:output_type -> experiment.ClientCredentials
+	6,  // 29: experiment.ExperimentHandler.Setup:output_type -> experiment.ExperimentSetupResponse
+	9,  // 30: experiment.ExperimentHandler.StartExperiment:output_type -> experiment.Null
+	6,  // 31: experiment.ExperimentHandler.StatusExperiment:output_type -> experiment.ExperimentSetupResponse
+	8,  // 32: experiment.ExperimentHandler.StopExperiment:output_type -> experiment.TerminationResp
+	9,  // 33: experiment.ServerCallBacksHandler.MLAgentSetupCallback:output_type -> experiment.Null
+	17, // 34: experiment.ServerCallBacksHandler.DataCollectorSetupCallback:output_type -> experiment.DataCollectorNotificationResponce
+	9,  // 35: experiment.ServerCallBacksHandler.DataCollectorIterationStatusCallback:output_type -> experiment.Null
+	9,  // 36: experiment.IterationCallBacksHandler.IterationsResults:output_type -> experiment.Null
+	26, // [26:37] is the sub-list for method output_type
+	15, // [15:26] is the sub-list for method input_type
+	15, // [15:15] is the sub-list for extension type_name
+	15, // [15:15] is the sub-list for extension extendee
+	0,  // [0:15] is the sub-list for field type_name
 }
 
 func init() { file_ml_server_interface_proto_init() }
@@ -1481,7 +1548,7 @@ func file_ml_server_interface_proto_init() {
 			}
 		}
 		file_ml_server_interface_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*IterationReq); i {
+			switch v := v.(*IterationsDetails); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1493,7 +1560,7 @@ func file_ml_server_interface_proto_init() {
 			}
 		}
 		file_ml_server_interface_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*IterationResp); i {
+			switch v := v.(*IterationReq); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1505,7 +1572,7 @@ func file_ml_server_interface_proto_init() {
 			}
 		}
 		file_ml_server_interface_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DataCollectorNotification); i {
+			switch v := v.(*IterationResp); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1517,7 +1584,7 @@ func file_ml_server_interface_proto_init() {
 			}
 		}
 		file_ml_server_interface_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*AgentNotification); i {
+			switch v := v.(*DataCollectorNotification); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1529,6 +1596,18 @@ func file_ml_server_interface_proto_init() {
 			}
 		}
 		file_ml_server_interface_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AgentNotification); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_ml_server_interface_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*DataCollectorNotificationResponce); i {
 			case 0:
 				return &v.state
@@ -1547,7 +1626,7 @@ func file_ml_server_interface_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_ml_server_interface_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   19,
+			NumMessages:   20,
 			NumExtensions: 0,
 			NumServices:   5,
 		},

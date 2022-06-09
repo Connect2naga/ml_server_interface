@@ -67,6 +67,11 @@ message ClientCredentials{
   string token        = 4;
 }
 
+message IterationsDetails {
+    IterationReq request    =1;
+    IterationResp response  =2;
+}
+
 message IterationReq{
   string                iterationID       = 1;
   string                experimentID      = 2;
@@ -119,7 +124,7 @@ service ExperimentHandler {
 service ServerCallBacksHandler {
   rpc MLAgentSetupCallback(AgentNotification) returns(Null){}
   rpc DataCollectorSetupCallback(DataCollectorNotification) returns(DataCollectorNotificationResponce){}
-  rpc DataCollectorIterationStatusCallback(IterationResp) returns(Null){}
+  rpc DataCollectorIterationStatusCallback(IterationsDetails) returns(Null){}
 }
 
 service IterationCallBacksHandler {
