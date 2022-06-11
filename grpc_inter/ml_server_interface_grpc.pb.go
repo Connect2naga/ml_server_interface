@@ -24,7 +24,7 @@ const _ = grpc.SupportPackageIsVersion7
 type IterationHandlerClient interface {
 	StatusIterationExperiment(ctx context.Context, in *Experiment, opts ...grpc.CallOption) (*IterationResp, error)
 	StartIterationExperiment(ctx context.Context, in *IterationReq, opts ...grpc.CallOption) (*Null, error)
-	SetupIterationExperiment(ctx context.Context, in *Experiment, opts ...grpc.CallOption) (*DataCollectorNotificationResponce, error)
+	SetupIterationExperiment(ctx context.Context, in *Experiment, opts ...grpc.CallOption) (*Null, error)
 }
 
 type iterationHandlerClient struct {
@@ -53,8 +53,8 @@ func (c *iterationHandlerClient) StartIterationExperiment(ctx context.Context, i
 	return out, nil
 }
 
-func (c *iterationHandlerClient) SetupIterationExperiment(ctx context.Context, in *Experiment, opts ...grpc.CallOption) (*DataCollectorNotificationResponce, error) {
-	out := new(DataCollectorNotificationResponce)
+func (c *iterationHandlerClient) SetupIterationExperiment(ctx context.Context, in *Experiment, opts ...grpc.CallOption) (*Null, error) {
+	out := new(Null)
 	err := c.cc.Invoke(ctx, "/experiment.IterationHandler/SetupIterationExperiment", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -68,7 +68,7 @@ func (c *iterationHandlerClient) SetupIterationExperiment(ctx context.Context, i
 type IterationHandlerServer interface {
 	StatusIterationExperiment(context.Context, *Experiment) (*IterationResp, error)
 	StartIterationExperiment(context.Context, *IterationReq) (*Null, error)
-	SetupIterationExperiment(context.Context, *Experiment) (*DataCollectorNotificationResponce, error)
+	SetupIterationExperiment(context.Context, *Experiment) (*Null, error)
 	mustEmbedUnimplementedIterationHandlerServer()
 }
 
@@ -82,7 +82,7 @@ func (UnimplementedIterationHandlerServer) StatusIterationExperiment(context.Con
 func (UnimplementedIterationHandlerServer) StartIterationExperiment(context.Context, *IterationReq) (*Null, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method StartIterationExperiment not implemented")
 }
-func (UnimplementedIterationHandlerServer) SetupIterationExperiment(context.Context, *Experiment) (*DataCollectorNotificationResponce, error) {
+func (UnimplementedIterationHandlerServer) SetupIterationExperiment(context.Context, *Experiment) (*Null, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetupIterationExperiment not implemented")
 }
 func (UnimplementedIterationHandlerServer) mustEmbedUnimplementedIterationHandlerServer() {}
