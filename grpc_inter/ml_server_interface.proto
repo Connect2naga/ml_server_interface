@@ -106,8 +106,9 @@ message DataCollectorNotificationResponce{
 
 
 service IterationHandler {
-  rpc StartIterationExperiment(IterationReq) returns(Null){}
   rpc StatusIterationExperiment(Experiment) returns(IterationResp){}
+  rpc StartIterationExperiment(IterationReq) returns(Null){}
+  rpc SetupIterationExperiment(Experiment) returns(DataCollectorNotificationResponce){}
 }
 
 

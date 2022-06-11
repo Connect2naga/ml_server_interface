@@ -22,8 +22,9 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type IterationHandlerClient interface {
-	StartIterationExperiment(ctx context.Context, in *IterationReq, opts ...grpc.CallOption) (*Null, error)
 	StatusIterationExperiment(ctx context.Context, in *Experiment, opts ...grpc.CallOption) (*IterationResp, error)
+	StartIterationExperiment(ctx context.Context, in *IterationReq, opts ...grpc.CallOption) (*Null, error)
+	SetupIterationExperiment(ctx context.Context, in *Experiment, opts ...grpc.CallOption) (*DataCollectorNotificationResponce, error)
 }
 
 type iterationHandlerClient struct {
@@ -32,15 +33,6 @@ type iterationHandlerClient struct {
 
 func NewIterationHandlerClient(cc grpc.ClientConnInterface) IterationHandlerClient {
 	return &iterationHandlerClient{cc}
-}
-
-func (c *iterationHandlerClient) StartIterationExperiment(ctx context.Context, in *IterationReq, opts ...grpc.CallOption) (*Null, error) {
-	out := new(Null)
-	err := c.cc.Invoke(ctx, "/experiment.IterationHandler/StartIterationExperiment", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
 }
 
 func (c *iterationHandlerClient) StatusIterationExperiment(ctx context.Context, in *Experiment, opts ...grpc.CallOption) (*IterationResp, error) {
@@ -52,12 +44,31 @@ func (c *iterationHandlerClient) StatusIterationExperiment(ctx context.Context, 
 	return out, nil
 }
 
+func (c *iterationHandlerClient) StartIterationExperiment(ctx context.Context, in *IterationReq, opts ...grpc.CallOption) (*Null, error) {
+	out := new(Null)
+	err := c.cc.Invoke(ctx, "/experiment.IterationHandler/StartIterationExperiment", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *iterationHandlerClient) SetupIterationExperiment(ctx context.Context, in *Experiment, opts ...grpc.CallOption) (*DataCollectorNotificationResponce, error) {
+	out := new(DataCollectorNotificationResponce)
+	err := c.cc.Invoke(ctx, "/experiment.IterationHandler/SetupIterationExperiment", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // IterationHandlerServer is the server API for IterationHandler service.
 // All implementations must embed UnimplementedIterationHandlerServer
 // for forward compatibility
 type IterationHandlerServer interface {
-	StartIterationExperiment(context.Context, *IterationReq) (*Null, error)
 	StatusIterationExperiment(context.Context, *Experiment) (*IterationResp, error)
+	StartIterationExperiment(context.Context, *IterationReq) (*Null, error)
+	SetupIterationExperiment(context.Context, *Experiment) (*DataCollectorNotificationResponce, error)
 	mustEmbedUnimplementedIterationHandlerServer()
 }
 
@@ -65,11 +76,14 @@ type IterationHandlerServer interface {
 type UnimplementedIterationHandlerServer struct {
 }
 
+func (UnimplementedIterationHandlerServer) StatusIterationExperiment(context.Context, *Experiment) (*IterationResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method StatusIterationExperiment not implemented")
+}
 func (UnimplementedIterationHandlerServer) StartIterationExperiment(context.Context, *IterationReq) (*Null, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method StartIterationExperiment not implemented")
 }
-func (UnimplementedIterationHandlerServer) StatusIterationExperiment(context.Context, *Experiment) (*IterationResp, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method StatusIterationExperiment not implemented")
+func (UnimplementedIterationHandlerServer) SetupIterationExperiment(context.Context, *Experiment) (*DataCollectorNotificationResponce, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetupIterationExperiment not implemented")
 }
 func (UnimplementedIterationHandlerServer) mustEmbedUnimplementedIterationHandlerServer() {}
 
@@ -82,24 +96,6 @@ type UnsafeIterationHandlerServer interface {
 
 func RegisterIterationHandlerServer(s grpc.ServiceRegistrar, srv IterationHandlerServer) {
 	s.RegisterService(&IterationHandler_ServiceDesc, srv)
-}
-
-func _IterationHandler_StartIterationExperiment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(IterationReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(IterationHandlerServer).StartIterationExperiment(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/experiment.IterationHandler/StartIterationExperiment",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(IterationHandlerServer).StartIterationExperiment(ctx, req.(*IterationReq))
-	}
-	return interceptor(ctx, in, info, handler)
 }
 
 func _IterationHandler_StatusIterationExperiment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -120,6 +116,42 @@ func _IterationHandler_StatusIterationExperiment_Handler(srv interface{}, ctx co
 	return interceptor(ctx, in, info, handler)
 }
 
+func _IterationHandler_StartIterationExperiment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IterationReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(IterationHandlerServer).StartIterationExperiment(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/experiment.IterationHandler/StartIterationExperiment",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(IterationHandlerServer).StartIterationExperiment(ctx, req.(*IterationReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _IterationHandler_SetupIterationExperiment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Experiment)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(IterationHandlerServer).SetupIterationExperiment(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/experiment.IterationHandler/SetupIterationExperiment",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(IterationHandlerServer).SetupIterationExperiment(ctx, req.(*Experiment))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // IterationHandler_ServiceDesc is the grpc.ServiceDesc for IterationHandler service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -128,12 +160,16 @@ var IterationHandler_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*IterationHandlerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
+			MethodName: "StatusIterationExperiment",
+			Handler:    _IterationHandler_StatusIterationExperiment_Handler,
+		},
+		{
 			MethodName: "StartIterationExperiment",
 			Handler:    _IterationHandler_StartIterationExperiment_Handler,
 		},
 		{
-			MethodName: "StatusIterationExperiment",
-			Handler:    _IterationHandler_StatusIterationExperiment_Handler,
+			MethodName: "SetupIterationExperiment",
+			Handler:    _IterationHandler_SetupIterationExperiment_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
