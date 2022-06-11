@@ -33,6 +33,7 @@ message ExperimentSetupRequest{
   bool                startExperimentOnSetupReady = 10;
   ResourceLimits      initialLimits               = 11;
   string              AgentAddress                = 12;
+  string              MLDataCollectorAddress      = 13;
 }
 
 message ResourceLimits{
