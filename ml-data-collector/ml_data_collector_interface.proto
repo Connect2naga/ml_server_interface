@@ -1,0 +1,76 @@
+syntax = "proto3";
+
+package experiment.ml_data_collector;
+option go_package = "gitlab.com/tariandev_intelops/grpc/ml_data_collector";
+
+
+message Experiment{
+  string    exp_id    = 1;
+}
+
+message Null {};
+
+message Cpu {
+  string    limit     = 1;
+  string    request   = 2;
+}
+
+message Memory {
+  string    limit     = 1;
+  string    request   = 2;
+}
+
+
+message ResourceLimits{
+  Cpu       cpu       = 1;
+  Memory    memory    = 2;
+}
+
+
+message ResourceUsage {
+  string      cpu       =  1;
+  string      memory    =  2;
+}
+
+message IterationResp{
+  string                status            = 1;
+  string                iterationID       = 2;
+  string                experimentID      = 3;
+  IterationReq          request           = 4;
+  ResourceUsage         maxLimit          = 5;
+  repeated ResourceUsage resourceLimits   = 6;
+}
+
+// In call back from Agent , ExperimentSetupRequest will be null
+message IterationReq{
+  string                        iterationID       = 1;
+  string                        experimentID      = 2;
+  ResourceLimits                limits            = 3;
+  ExperimentSetupRequest        setupReq          = 4;
+}
+
+message Limit {
+  string        min       = 1;
+  string        max       = 2;
+}
+
+message ExperimentSetupRequest{
+  map<string, string> additionalInfo              = 1;
+  int32               noOfIterations              = 2;
+  Limit               cpu                         = 3;
+  Limit               memory                      = 4;
+  ResourceLimits      initialLimits               = 5;
+  string              AgentAddress                = 6;
+}
+
+service IterationHandler {
+  rpc SetupIterationExperiment(Experiment) returns(Null){}
+  rpc StartIterationExperiment(IterationReq) returns(Null){}
+  rpc StatusIterationExperiment(Experiment) returns(IterationResp){}
+}
+
+service IterationCallBacksHandler {
+  rpc IterationsResults(IterationResp) returns(Null){}
+}
+
+
