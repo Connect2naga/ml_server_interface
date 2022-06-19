@@ -1,6 +1,6 @@
 syntax = "proto3";
 package experiment;
-option go_package = "gitlab.com/tariandev_intelops/ml-server/experiment";
+option go_package = "github.com/ml-server/experiment";
 
 message ResourceUsage {
   string cpu      =  1;
