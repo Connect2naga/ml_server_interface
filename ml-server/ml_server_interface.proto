@@ -1,6 +1,6 @@
 syntax = "proto3";
 package experiment.ml_server;
-option go_package = "github.com/grpc/ml_server";
+option go_package = "gitlab.com/tariandev_intelops/grpc/ml_server";
 
 
 
@@ -45,6 +45,14 @@ message ResourceLimits{
   Memory memory = 2;
 }
 
+message GitParams {
+  string url                            = 1;
+  string user                           = 2;
+  string token                          = 3;
+  string branch                         = 4;
+  string path                           = 5;
+}
+
 
 message ExperimentSetupRequest{
   map<string, string> agentDetails                = 1;
@@ -55,6 +63,8 @@ message ExperimentSetupRequest{
   ResourceLimits      initialLimits               = 6;
   string              AgentAddress                = 7;
   string              MLDataCollectorAddress      = 8;
+  GitParams           kustomizationParams         = 9;
+  GitParams           testParams                  = 10;
 }
 
 message ResourceUsage {

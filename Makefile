@@ -19,7 +19,7 @@ ml_server:
 
 
 .PHONY: protoc
-protoc: grpc_inter ml_data_collector ml_server
+protoc: ml_data_collector ml_server
 
 
 .PHONY: vupdate
